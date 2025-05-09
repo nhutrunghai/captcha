@@ -76,7 +76,7 @@ def train():
         y_val.append(y_v)
 
     model = build_model()
-    model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=30, batch_size=32)
+    model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=35, batch_size=64)
 
     model.save("captcha_model.h5")
     print("✅ Mô hình đã được huấn luyện và lưu thành công.")

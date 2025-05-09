@@ -19,4 +19,4 @@ def predict_image(img_path):
     result = ''.join([LABEL_TO_CHAR[np.argmax(p)] for p in preds])
     return result
 
-print(predict_image("0D26.png"))
+print(predict_image("2UW6.png"))
