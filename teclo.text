@@ -1,0 +1,69 @@
+Tuyệt vời! Dưới đây là tóm tắt đầy đủ và súc tích các công nghệ, kỹ thuật, thư viện và kiến thức nền tảng bạn đã dùng trong đoạn code huấn luyện AI nhận diện CAPTCHA — đủ để bạn biết cần tìm hiểu gì sâu hơn sau này.
+
+🧠 1. Chủ đề chính: OCR (Optical Character Recognition) dùng Deep Learning
+Mục tiêu: Dạy máy nhận diện chữ trong ảnh CAPTCHA.
+
+🧰 2. Thư viện & công nghệ sử dụng
+Công nghệ / Thư viện	Mục đích
+TensorFlow, Keras	Xây dựng và huấn luyện mô hình deep learning
+OpenCV (cv2)	Đọc, xử lý ảnh (resize, grayscale, normalize)
+NumPy	Xử lý mảng số học (đầu vào của mạng nơ-ron)
+Pandas	Đọc file CSV, quản lý bảng dữ liệu ảnh và nhãn
+Scikit-learn	Tách dữ liệu train/test bằng train_test_split
+string	Lấy tập ký tự chuẩn A–Z, 0–9
+
+🏗️ 3. Kỹ thuật trong mô hình
+🎛️ Xử lý dữ liệu ảnh
+Grayscale: chuyển ảnh màu sang trắng đen để đơn giản hóa đầu vào
+
+Resize: chuẩn hóa kích thước ảnh (VD: 110x35)
+
+Normalize: chia pixel từ [0, 255] về [0, 1]
+
+🧾 Gán nhãn
+Tên file chính là nhãn (VD: 4PV6.png có label là "4PV6")
+
+Dùng One-hot encoding để biểu diễn từng ký tự (VD: A → [0 0 1 ...])
+
+🧠 Mô hình CNN nhiều đầu ra (multi-output CNN)
+Ảnh được đưa qua 2 lớp Conv2D + MaxPooling
+
+Cuối cùng có 4 đầu ra, mỗi đầu ra dự đoán 1 ký tự trong mã CAPTCHA
+
+Mỗi đầu ra là một Dense layer với softmax, trả về xác suất của từng ký tự
+
+📉 Loss function & Metrics
+Loss: categorical_crossentropy (vì one-hot)
+
+Metrics: accuracy riêng cho từng ký tự
+
+Tổng cộng 4 loss, 4 metrics (mỗi ký tự 1 cái)
+
+🧪 4. Quy trình huấn luyện
+Đọc ảnh và nhãn từ file
+
+Resize và chuẩn hóa ảnh
+
+One-hot encode các ký tự nhãn
+
+Tách train/test
+
+Huấn luyện mô hình với 30 epochs
+
+Lưu mô hình ra file .h5 để dùng sau
+
+🎓 5. Những khái niệm nên tìm hiểu sâu hơn
+Khái niệm	Vì sao cần học
+CNN (Convolutional Neural Network)	Là xương sống của mô hình xử lý ảnh
+One-hot encoding	Mã hóa nhãn chữ cái thành vector
+Multi-output model	Xử lý khi đầu ra là 1 chuỗi nhiều ký tự
+Categorical crossentropy	Hàm mất mát phổ biến cho phân loại
+Overfitting / Underfitting	Để biết khi nào mô hình học quá kỹ hoặc quá kém
+Data Augmentation	Giúp mô hình học tốt hơn với ít dữ liệu
+Dropout / BatchNorm	Các kỹ thuật giúp mô hình tổng quát hóa tốt hơn
+
+📦 Tệp đầu ra:
+captcha_model.h5: mô hình huấn luyện xong, có thể dùng để dự đoán CAPTCHA mới.
+
+📝 Tóm gọn 1 câu:
+Bạn đang dùng một mạng nơ-ron tích chập (CNN) với nhiều đầu ra để nhận diện từng ký tự trong mã CAPTCHA, dựa trên ảnh grayscale được chuẩn hóa, nhãn lấy từ tên file, và mô hình được huấn luyện bằng TensorFlow/Keras.

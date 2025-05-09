@@ -5,7 +5,7 @@ import requests
 import io
 import os
 
-SAVE_DIR = r"D:\traincaptcha\img"
+SAVE_DIR = r"D:\captcha\captcha\img"
 CAPTCHA_URL = "https://thanhtoanhocphi.epu.edu.vn/WebCommon/GetCaptcha"
 
 class CaptchaTrainer:
@@ -21,7 +21,8 @@ class CaptchaTrainer:
 
         self.input_entry = tk.Entry(root, font=("Arial", 14), justify='center')
         self.input_entry.pack(pady=5)
-
+        # Bind phím Enter để thực hiện nút Done
+        self.input_entry.bind('<Return>', lambda event: self.save_and_next())
         button_frame = tk.Frame(root)
         button_frame.pack(pady=10)
 
